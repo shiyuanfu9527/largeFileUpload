@@ -31,7 +31,7 @@ router.post('/update',cors(),(req,res)=>{
                     const haveSuffix = ~fileName.lastIndexOf('.')
                     let nameSuffix //文件后缀
                     haveSuffix?nameSuffix = fileName.slice(fileName.lastIndexOf('.'),fileName.length): nameSuffix = ''
-                    let justMd5 = fileMd5.slice(0,fields.lastIndexOf('-'))
+                    let justMd5 = fileMd5.slice(0,fileMd5.lastIndexOf('-'))
                     let folderPath = path.join(staticPath,'cache',justMd5) //所有切片的文件夹
                     let dirPath = path.join(folderPath,`${fileMd5}${nameSuffix}`)
                     if(!fs.existsSync(folderPath)){
@@ -121,7 +121,7 @@ function mergeChunks(folderPath,fileMd5,nameSuffix,cb){
         if(!err){
             const pathArr = []
             for(let i = 0;i < data.length; i++ ){
-                let needPath = data.filter(item=>item.split('-')[1].split('.')[0] === string(i))[0]
+                let needPath = data.filter(item=>item.split('-')[1].split('.')[0] === String(i))[0]
                 pathArr.push(path.join(folderPath,needPath))
             }
             const endPathUrl = path.join(staticPath,'finish',`${fileMd5.split('-')[0]}${nameSuffix}`) //合并后的路径
