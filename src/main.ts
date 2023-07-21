@@ -1,5 +1,9 @@
 import { createApp } from 'vue'
-import './style.css'
+import '@/global.css'
 import App from './App.vue'
+import * as localforage from 'localforage'
+localforage.config({name:'db'})
+const app = createApp(App)
+app.config.globalProperties.$localForage = localforage
+app.mount('#app')
 
-createApp(App).mount('#app')

@@ -46,7 +46,7 @@ import { taskArrItem } from './api/home';
 const props = defineProps({
     taskArr: { type: Array<taskArrItem>, default: [] }
 })
-const emit = defineEmits(['pauseUpdate', 'goonUpdate', 'rest'])
+const emit = defineEmits(['pauseUpdate', 'goonUpdate', 'reset'])
 // 暂停
 const pauseUpdate = (item: taskArrItem) => {
     emit('pauseUpdate', item)
@@ -57,7 +57,7 @@ const goonUpdate = (item: taskArrItem) => {
 }
 // 取消
 const reset = (item: taskArrItem) => {
-    emit('rest', item)
+    emit('reset', item)
 }
 // 显示文件大小
 const fileSize = (val: number) => {
